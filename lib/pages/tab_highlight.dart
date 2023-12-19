@@ -11,7 +11,7 @@ class _TabHighlightState extends State<TabHighlight> {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: Text('TAB HIGHTLIGHT'),
+      child: Text('TAB HIGHLIGHT'),
     );
   }
 }
