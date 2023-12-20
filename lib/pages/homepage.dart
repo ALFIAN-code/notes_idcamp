@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notes/controller/notes_controller.dart';
+import 'package:notes/model/note_model.dart';
+import 'package:notes/pages/notespage.dart';
 import 'package:notes/pages/tab_all.dart';
 import 'package:notes/pages/tab_highlight.dart';
 import 'package:notes/pages/tab_important.dart';
 import 'package:notes/style.dart';
+import 'package:notes/widget/popup_menu.dart';
 import 'package:notes/widget/search_bar.dart';
+import 'package:popover/popover.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -12,7 +18,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> tabBar = [
       const Tab(
-        text: 'Notes',
+        text: 'All Notes',
       ),
       const Tab(
         text: 'Highlight',
@@ -92,7 +98,10 @@ class Homepage extends StatelessWidget {
             body: const TabBarView(
                 children: [TabAll(), TabHighlight(), TabImportant()])),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            notesController.addNote(Note(title: 'your note\'s title', content: 'write your notes here ....', category: Category.uncategorized));
+            Get.to(const NotePage(), arguments: [notesController.notes.length -1]);
+          },
           backgroundColor: Colors.blue.shade100.withOpacity(0.8),
           elevation: 1,
           shape: const CircleBorder(),
