@@ -102,6 +102,14 @@ class _NotePageState extends State<NotePage> {
                 TextField(
                   controller: contentController,
                   maxLines: null,
+                  onChanged: (value) {
+                    notesController.updateNote(
+                        Note(
+                            title: titleController.text,
+                            content: contentController.text,
+                            category: notesController.notes[index].category),
+                        index);
+                  },
                   keyboardType: TextInputType.multiline,
                   decoration: const InputDecoration(border: InputBorder.none),
                 )
