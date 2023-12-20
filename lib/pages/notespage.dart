@@ -56,21 +56,15 @@ class _NotePageState extends State<NotePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.black26.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(1000)),
-                  child: IconButton(
-                    iconSize: 20,
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                    ),
-                    color: Colors.black.withOpacity(0.7),
+                IconButton(
+                  iconSize: 20,
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
                   ),
+                  color: Colors.black.withOpacity(0.7),
                 ),
                 Expanded(
                     flex: 9,
@@ -86,7 +80,7 @@ class _NotePageState extends State<NotePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: Column(
               children: [
                 TextField(
