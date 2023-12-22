@@ -20,6 +20,7 @@ class NoteCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +34,7 @@ class NoteCard extends StatelessWidget {
               }, icon: const Icon(Icons.more_vert), iconSize: 20,color: Colors.black.withOpacity(0.7),)
             ],
           ),
-          Text(note.content, maxLines: 4,overflow: TextOverflow.ellipsis, style: medium15.copyWith(color: const Color(0xff494949).withOpacity(0.72), fontSize: 11),),
+          Text(note.content, softWrap: false, maxLines: 5,overflow: TextOverflow.ellipsis, style: medium15.copyWith(color: const Color(0xff494949).withOpacity(0.72), fontSize: 11),),
           const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,

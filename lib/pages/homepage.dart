@@ -95,12 +95,19 @@ class Homepage extends StatelessWidget {
                     ),
                   )
                 ],
-            body: const TabBarView(
-                children: [TabAll(), TabHighlight(), TabImportant()])),
+            body: const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: TabBarView(
+                  children: [TabAll(), TabHighlight(), TabImportant()]),
+            )),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            notesController.addNote(Note(title: 'your note\'s title', content: 'write your notes here ....', category: Category.uncategorized));
-            Get.to(const NotePage(), arguments: [notesController.notes.length -1]);
+            notesController.addNote(Note(
+                title: 'your note\'s title',
+                content: 'write your notes here ....',
+                category: Category.uncategorized));
+            Get.to(const NotePage(),
+                arguments: [notesController.notes.length - 1]);
           },
           backgroundColor: Colors.blue.shade100.withOpacity(0.8),
           elevation: 1,

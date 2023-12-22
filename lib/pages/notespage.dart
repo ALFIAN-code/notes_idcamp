@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes/controller/notes_controller.dart';
 import 'package:notes/model/note_model.dart';
+import 'package:notes/pages/homepage.dart';
 import 'package:notes/style.dart';
 
 class NotePage extends StatefulWidget {
@@ -50,33 +51,63 @@ class _NotePageState extends State<NotePage> {
               : (notesController.notes[index].category == Category.Highlight)
                   ? const Color(0xffFFFEE4)
                   : const Color(0xffFFEEE4),
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
-          child: SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  iconSize: 20,
-                  onPressed: () {
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: Text('My Notes', style: semibold18,),
+        leading: IconButton(onPressed: (){
+          Get.back();
+        }, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+        actions: [
+          IconButton(onPressed: (){
+            showDialog(context: context, builder:(context){
+              return AlertDialog(
+                surfaceTintColor: Colors.white,
+                backgroundColor: Colors.white,
+                title: const Text('Are You Sure?'),
+                content: const Text('Notes that have been deleted cannot be restored'),
+                actions: [
+                  TextButton(onPressed: (){
                     Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                  ),
-                  color: Colors.black.withOpacity(0.7),
-                ),
-                Expanded(
-                    flex: 9,
-                    child: Text(
-                      'My Notes',
-                      textAlign: TextAlign.center,
-                      style: semibold18,
-                    )),
-                const Expanded(flex: 2, child: SizedBox()),
-              ],
-            ),
-          )),
+                  }, child: const Text('Cancel')),
+                  TextButton(onPressed: (){
+                    notesController.removeNote(index);
+                    Get.off(const Homepage());
+                  }, child: Text('Delete'))
+                ],
+              );
+            } );
+          }, icon: const Icon(Icons.delete))
+        ],
+      ),
+      
+      // PreferredSize(
+      //     preferredSize: const Size.fromHeight(70),
+      //     child: SafeArea(
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //         children: [
+      //           IconButton(
+      //             iconSize: 20,
+      //             onPressed: () {
+      //               Get.back();
+      //             },
+      //             icon: const Icon(
+      //               Icons.arrow_back_ios_new_rounded,
+      //             ),
+      //             color: Colors.black.withOpacity(0.7),
+      //           ),
+      //           Expanded(
+      //               flex: 9,
+      //               child: Text(
+      //                 'My Notes',
+      //                 textAlign: TextAlign.center,
+      //                 style: semibold18,
+      //               )),
+      //           const Expanded(flex: 2, child: SizedBox()),
+      //         ],
+      //       ),
+      //     )),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
